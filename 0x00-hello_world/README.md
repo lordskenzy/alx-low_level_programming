@@ -1,0 +1,1 @@
+This repo contains my c foundation practice .i am greatful that i have reached this far and i know its all as aresult of hardwork and determination.As i enbark on this jourtney i would love to kick off with a begginer mortivational quote that keeps me fueled all the way,“Make it work, make it right, make it fast.” – Kent Beck.
