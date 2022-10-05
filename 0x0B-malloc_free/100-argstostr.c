@@ -1,39 +1,51 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
- *  * argstostr -  concatenates all the arguments of your program
- *   *
- *    * @ac: grid to free the previous
- *     * @av: height of grid
- *      *
- *       * Return: pointer to a new string, or NULL if it fails
- *        */
+ * argstostr - concats arguments
+ * @ac: param
+ * @av: param
+ * Return: pointer
+ */
 char *argstostr(int ac, char **av)
 {
-	int i, j, k = 0, n = 0;
-	char *s;
-	if (ac <= 0 || av == NULL)
+	char *arg;
+	int c, i, j, k;
+
+	if (ac == 0)
 		return (NULL);
-	for (i = 0; i < ac ; i++)
+
+	for (c = i = 0; i < ac; i++)
 	{
-		for (j = 0; av[i][j]; j++)
-			n++;
-		n++;
+		if (av[i] == NULL)
+			return (NULL);
+
+		for (j = 0; av[i][j] != '\0'; j++)
+			c++;
+		c++;
 	}
-	n++;
-	s = malloc(n *sizeof(char));
-	if (s == NULL)
-		return (NULL);
-	for (i = 0; i < ac; i++)
+
+	arg = malloc((c + 1) * sizeof(char));
+
+	if (arg == NULL)
 	{
-		for (j = 0; av[i][j]; j++)
+		free(arg);
+		return (NULL);
+	}
+
+	for (i = j = k = 0; k < c; j++, k++)
+	{
+		if (av[i][j] == '\0')
 		{
-			s[k] = av[i][j];
+			arg[k] = '\n';
+			i++;
 			k++;
+			j = 0;
 		}
-		s[k] = '\n';
-		k++;
+		if (k < c - 1)
+			arg[k] = av[i][j];
 	}
-	s[k] = '\0';
-	return (s);
+	arg[k] = '\0';
+
+	return (arg);
 }
